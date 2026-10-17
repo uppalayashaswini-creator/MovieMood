@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MovieMood — AI Movie Review Sentiment Analyzer</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="logo">🎬</div>
+      <h1>MovieMood</h1>
+      <p class="tagline">AI-Powered Movie Review Sentiment Analyzer</p>
+      <p class="subtitle">
+        Paste any movie review below and our AI model will predict whether
+        the sentiment is <strong>POSITIVE</strong> or <strong>NEGATIVE</strong>
+        — along with a confidence score.
+      </p>
+      <p class="disclaimer">
+        ⚠️ This model was fine-tuned on a specific dataset. Its accuracy
+        depends on how similar your review is to the training data.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Example Reviews -->
+    <section class="examples-section">
+      <h2 class="section-title">Try an Example</h2>
+      <div class="examples-grid">
+        <button class="example-btn" data-review="This movie was absolutely breathtaking! The acting was superb, the story was deeply moving, and the cinematography left me speechless. A true masterpiece.">
+          😍 Glowing Review
+        </button>
+        <button class="example-btn" data-review="What a disappointment. The plot made no sense, the characters were flat, and the pacing was unbearably slow. I nearly fell asleep halfway through.">
+          😤 Harsh Critique
+        </button>
+        <button class="example-btn" data-review="An incredible journey from start to finish. The director managed to balance humor, heart, and suspense perfectly. I laughed, I cried, and I left the theater feeling uplifted.">
+          🌟 Enthusiastic Praise
+        </button>
+        <button class="example-btn" data-review="Terrible special effects, a clichéd storyline, and wooden performances. Save your money and skip this one entirely.">
+          👎 Scathing Review
+        </button>
+      </div>
+    </section>
+
+    <!-- Input Card -->
+    <section class="card input-card">
+      <label for="review" class="input-label">Your Movie Review</label>
+      <textarea
+        id="review"
+        class="review-textarea"
+        placeholder="Write your movie review here… (e.g., 'The film was a stunning visual achievement with a gripping storyline.')"
+        rows="6"
+        maxlength="2000"
+      ></textarea>
+      <div class="char-count">
+        <span id="char-count">0</span> / 2000
+      </div>
+
+      <!-- Error Message -->
+      <div id="error-msg" class="error-msg" role="alert" aria-live="polite"></div>
+
+      <!-- Buttons -->
+      <div class="btn-row">
+        <button id="analyze-btn" class="btn btn-primary">
+          <span class="btn-text">Analyze Sentiment</span>
+        </button>
+        <button id="clear-btn" class="btn btn-secondary">
+          Clear
+        </button>
+      </div>
+
+      <!-- Loading Indicator -->
+      <div id="loading" class="loading hidden" aria-live="polite">
+        <div class="spinner"></div>
+        <span>Analyzing your review…</span>
+      </div>
+    </section>
+
+    <!-- Result Card -->
+    <section id="result-card" class="card result-card hidden" aria-live="polite">
+      <h2 class="result-title">Sentiment Result</h2>
+      <div id="sentiment-badge" class="sentiment-badge"></div>
+      <div class="confidence-row">
+        <span class="confidence-label">Confidence:</span>
+        <div class="confidence-bar-wrap">
+          <div id="confidence-bar" class="confidence-bar"></div>
+        </div>
+        <span id="confidence-pct" class="confidence-pct"></span>
+      </div>
+      <p class="result-note">
+        Results are based on the model's training data and may not reflect
+        every nuance of a review.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Powered by <a href="https://huggingface.co/yashaswinii2/my-first-distilbert-sentiment" target="_blank" rel="noopener noreferrer">DistilBERT</a> fine-tuned by yashaswinii2 · Built with Flask</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
